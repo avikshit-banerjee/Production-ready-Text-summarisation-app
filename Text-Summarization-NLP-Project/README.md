@@ -1,131 +1,103 @@
-# End to end Text-Summarizer-Project
+# Text Summarisation App
 
-## Workflows
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your/awesome/project/blob/master/LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Docker](https://img.shields.io/badge/Docker-20.10-blue.svg)](https://www.docker.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68-blue.svg)](https://fastapi.tiangolo.com/)
+[![AWS](https://img.shields.io/badge/AWS-Cloud%20Platform-orange.svg)](https://aws.amazon.com/)
+[![VSCode](https://img.shields.io/badge/VSCode-Editor-lightgrey.svg)](https://code.visualstudio.com/)
 
-1. Update config.yaml
-2. Update params.yaml
-3. Update entity
-4. Update the configuration manager in src config
-5. update the conponents
-6. update the pipeline
-7. update the main.py
-8. update the app.py
+Welcome to the Text Summarisation App project! This repository contains the source code for an app that generates summaries for text documents. The app is developed using Python and leverages the AutoModelForSeq2SeqLM from the Transformers Library for training and tokenisation. It is dockerized using Docker for seamless deployment in a production environment and is hosted on the AWS platform.
 
+## Features
 
-# How to run?
-### STEPS:
+- Generate summaries for text documents
+- FastAPI-based web interface for interacting with the app
+- Docker containerization for easy deployment
+- CI/CD pipeline using GitHub Actions for automated testing and deployment
 
-Clone the repository
+## Technologies Used
 
-```bash
-https://github.com/entbappy/End-to-end-Text-Summarization
-```
-### STEP 01- Create a conda environment after opening the repository
+- ![Python](https://img.shields.io/badge/Python-3.9-blue.svg): The main programming language used in this project.
+- ![Docker](https://img.shields.io/badge/Docker-20.10-blue.svg): Containerization platform used to package the app and its dependencies.
+- ![FastAPI](https://img.shields.io/badge/FastAPI-0.68-blue.svg): A modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
+- ![AWS](https://img.shields.io/badge/AWS-Cloud%20Platform-orange.svg): The cloud platform where the app is hosted.
+- ![VSCode](https://img.shields.io/badge/VSCode-Editor-lightgrey.svg): The Integrated Development Environment (IDE) used for coding.
 
-```bash
-conda create -n summary python=3.8 -y
-```
+## Getting Started
 
-```bash
-conda activate summary
-```
+Follow the instructions below to get a local copy of the project up and running on your machine.
 
+### Prerequisites
 
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
+- Python 3.9: Install Python from the official website: [Python Downloads](https://www.python.org/downloads/release/python-390/)
+- Docker 20.10: Install Docker from the official website: [Docker](https://www.docker.com/)
+- AWS Account: Sign up for an AWS account if you don't have one: [AWS](https://aws.amazon.com/)
+- VSCode: Install Visual Studio Code from the official website: [VSCode](https://code.visualstudio.com/)
 
+### Installation
 
-```bash
-# Finally run the following command
-python app.py
-```
+1. Clone the repository:
 
-Now,
-```bash
-open up you local host and port
-```
+   ```bash
+   git clone https://github.com/your/awesome/project.git
+   ```
 
+2. Change to the project directory:
 
-```bash
-Author: Krish Naik
-Data Scientist
-Email: krishnaik06@gmail.com
+   ```bash
+   cd project-directory
+   ```
 
-```
+3. Set up a virtual environment (optional but recommended):
 
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
+4. Install the dependencies:
 
-# AWS-CICD-Deployment-with-Github-Actions
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## 1. Login to AWS console.
+### Usage
 
-## 2. Create IAM user for deployment
+1. Run the FastAPI development server:
 
-	#with specific access
+   ```bash
+   uvicorn main:app --reload
+   ```
 
-	1. EC2 access : It is virtual machine
+   This will start the server, and you can access the app at `http://localhost:8000` in your browser.
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+2. Interact with the app by providing text documents and generating summaries.
 
+### Deployment
 
-	#Description: About the deployment
+To deploy the app using Docker and host it on AWS, follow these steps:
 
-	1. Build docker image of the source code
+1. Build the Docker image:
 
-	2. Push your docker image to ECR
+   ```bash
+   docker build -t text-summarisation-app .
+   ```
 
-	3. Launch Your EC2 
+2. Push the Docker image to a container registry, such as Docker Hub or Amazon ECR.
 
-	4. Pull Your image from ECR in EC2
+3. Create an AWS EC2 instance or any other suitable AWS service to host the Docker container.
 
-	5. Lauch your docker image in EC2
+4. Pull the Docker image on the EC2 instance.
 
-	#Policy:
+5. Run the Docker container on the EC2 instance.
 
-	1. AmazonEC2ContainerRegistryFullAccess
+For more detailed instructions on deploying Docker containers on AWS, please refer to the official AWS documentation.
 
-	2. AmazonEC2FullAccess
+## Contributing
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/text-s
+Contributions are welcome! If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
-	
-## 4. Create EC2 machine (Ubuntu) 
+## License
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app
+This project is licensed under the [MIT](https://github.com/your/awesome/project/blob/master/LICENSE) License.
